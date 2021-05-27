@@ -39,3 +39,9 @@ project/**/metals.sbt
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+
+
+# Added by cargo
+
+/target
+Cargo.lock
