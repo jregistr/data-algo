@@ -45,3 +45,8 @@ project/**/metals.sbt
 
 /target
 Cargo.lock
+
+
+# Build
+build
+.gradle
