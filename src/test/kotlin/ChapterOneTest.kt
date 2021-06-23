@@ -1,10 +1,9 @@
-import algos.allUniqueAsciis
-import algos.allUniqueChars
+import algos.*
 import org.junit.jupiter.api.Test
 import org.assertj.core.api.Assertions.*;
 import java.lang.StringBuilder
 
-class UniqueCharsTest {
+class AllUniqueChars {
 
     @Test
     fun `test it against the string aba`() {
@@ -43,7 +42,7 @@ class UniqueCharsTest {
 
     fun allAscii(): String {
         val builder = StringBuilder()
-        for (i in 0..128) {
+        for (i in 0..127) {
             val char = Char(i)
             builder.append(char)
         }
@@ -51,3 +50,20 @@ class UniqueCharsTest {
     }
 
 }
+
+class IsPermutation {
+
+    @Test
+    fun `are permutations of each other`() {
+        val  (value, that) = "abcdE" to "Edcab"
+        assertThat(isPermutationOfOther(value, that)).isTrue
+    }
+
+    @Test
+    fun `different lengths`() {
+        val (value, that) = "superstring" to "supernot"
+        assertThat(isPermutationOfOther(value, that)).isFalse
+    }
+}
+
+
