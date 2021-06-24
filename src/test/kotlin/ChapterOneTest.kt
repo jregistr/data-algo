@@ -66,4 +66,21 @@ class IsPermutation {
     }
 }
 
+class Urlify {
+
+    @Test
+    fun `test that it works on the book example`() {
+        val toTest = "Mr John Smith    "
+        val trueSize = 13
+        assertThat(urlify(toUrl = toTest, trueSize)).isEqualTo("Mr%20John%20Smith")
+    }
+
+    @Test
+    fun `that it works on multiple spaces`() {
+        val toTest = "Mr  John    "
+        val trueSize = 8
+        assertThat(urlify(toTest, trueSize)).isEqualTo("Mr%20%20John")
+    }
+}
+
 
