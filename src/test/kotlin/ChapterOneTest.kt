@@ -84,3 +84,12 @@ class Urlify {
 }
 
 
+class IsPalindromePermutation {
+
+    @Test
+    fun `test that it works on the example string`() {
+        val toTest = "Tact Coa"
+        assertThat(isPalindromePermutation(toTest)).isTrue
+    }
+}
+

@@ -75,3 +75,37 @@ fun urlify(toUrl: String, trueSize: Int): String {
     }
     return String(asArray)
 }
+
+/*
+Given this string: "Tact Cao"
+This is a permutation of a Palindrome because you can write
+taco cat with it.
+
+Every character has an even number copies of it.
+One character is allowed to have an odd number of it
+---------
+Impl Idea1:
+Use a map to count the letter characters ignoring casing.
+Tact Coa
+Map['a' -> 2, 't' -> 2, 'c' -> 2, 'o' -> 1]
+----
+ */
+
+fun isPalindromePermutation(value: String): Boolean {
+    var foundOdd = false
+    val asArray = value.lowercase().toCharArray()
+    val freqMap = mutableMapOf<Char, Int>()
+    for (char in asArray) {
+        if(!char.isLetter()) continue
+        val updateVal = freqMap.getOrDefault(char, 0) + 1
+        freqMap[char] = updateVal
+    }
+
+    for ((_, count) in freqMap.entries) {
+        if(count and 1 == 1) {
+            if (foundOdd) return false
+            foundOdd = true
+        }
+    }
+    return true
+}
