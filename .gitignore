@@ -40,6 +40,9 @@ project/**/metals.sbt
 !.vscode/extensions.json
 *.code-workspace
 
+## Node JS
+node_modules
+
 
 # Added by cargo
 

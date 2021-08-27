@@ -1,5 +1,8 @@
 {
     "files.watcherExclude": {
         "**/target": true
-    }
+    },
+    "editor.codeLens": true,
+    "jest.enableCodeLens": true,
+    "testExplorer.codeLens": true,
 }
