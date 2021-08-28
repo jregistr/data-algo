@@ -1,8 +1,26 @@
 
-function fib(n: number): number {
-    if(n <= 2) return 1;
+function fib_bad(n: number): number {
+    if (n <= 2) return 1;
 
-    return fib(n-1) + fib(n-2);
+    return fib_bad(n - 1) + fib_bad(n - 2);
 }
 
-console.log(fib(8));
+// console.log(fib_bad(6));
+
+// console.log(fib_bad(45));
+
+function fibMemoized(n: number): number {
+    const memo = new Map<number, number>();
+
+    function inner(n: number): number {
+        if (memo.has(n)) return memo.get(n)!;
+        if (n <= 2) return 1;
+
+        const fib = inner(n - 1) + inner(n - 2);
+        memo.set(n, fib);
+        return fib;
+    }
+    return inner(n);
+}
+
+console.log(fibMemoized(100));
