@@ -1,5 +1,5 @@
 
-function fib_bad(n: number): number {
+export function fib_bad(n: number): number {
     if (n <= 2) return 1;
 
     return fib_bad(n - 1) + fib_bad(n - 2);
@@ -9,7 +9,7 @@ function fib_bad(n: number): number {
 
 // console.log(fib_bad(45));
 
-function fibMemoized(n: number): number {
+export function fibMemoized(n: number): number {
     const memo = new Map<number, number>();
 
     function inner(n: number): number {
