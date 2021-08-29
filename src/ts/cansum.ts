@@ -69,13 +69,13 @@ describe("first solution", () => {
     });
 
     it("should return false for these inputs", () => {
-        expect(canSumBrute(7, [2, 4])).toBeFalsy;
+        expect(canSumBrute(7, [2, 4])).toBeFalsy();
         // expect(canSumBrute(300, [7, 14])).toBeFalsy; // Takes a while to return
     });
 })
 
 describe("memoized solution", () => {
     test("that it returns false but without taking forever", () => {
-        expect(canSum(300, [7, 14])).toBeFalsy
+        expect(canSum(300, [7, 14])).toBeFalsy();
     })
 })

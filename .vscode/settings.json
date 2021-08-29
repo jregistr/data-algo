@@ -5,4 +5,5 @@
     "editor.codeLens": true,
     "jest.enableCodeLens": false,
     "testExplorer.codeLens": true,
+    "editor.formatOnSave": true,
 }
