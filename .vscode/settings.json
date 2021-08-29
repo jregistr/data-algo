@@ -6,4 +6,5 @@
     "jest.enableCodeLens": false,
     "testExplorer.codeLens": true,
     "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

@@ -8,23 +8,22 @@ a down move and a right move.
 */
 
 function gridTraveler(m: number, n: number): number {
-    const memo = new Map<string, number>();
+  const memo = new Map<string, number>();
 
-    function inner(m: number, n: number): number {
-        const key = `${m}:${n}`;
-        if (memo.has(key)) return memo.get(key)!
-        if (m === 1 && n === 1) return 1;
-        if (m === 0 || n === 0) return 0;
+  function inner(m: number, n: number): number {
+    const key = `${m}:${n}`;
+    if (memo.has(key)) return memo.get(key)!;
+    if (m === 1 && n === 1) return 1;
+    if (m === 0 || n === 0) return 0;
 
-        const ways = inner(m - 1, n) + inner(m, n - 1);
-        memo.set(key, ways);
-        return ways;
-    }
+    const ways = inner(m - 1, n) + inner(m, n - 1);
+    memo.set(key, ways);
+    return ways;
+  }
 
-    return inner(m, n);
+  return inner(m, n);
 }
 
-
 test("large grid", () => {
-    expect(gridTraveler(18, 18)).toBe(2333606220);
-})
+  expect(gridTraveler(18, 18)).toBe(2333606220);
+});
