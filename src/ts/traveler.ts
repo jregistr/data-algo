@@ -25,4 +25,6 @@ function gridTraveler(m: number, n: number): number {
 }
 
 
-console.log(gridTraveler(18, 18))
+test("large grid", () => {
+    expect(gridTraveler(18, 18)).toBe(2333606220);
+})

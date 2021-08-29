@@ -3,6 +3,6 @@
         "**/target": true
     },
     "editor.codeLens": true,
-    "jest.enableCodeLens": true,
+    "jest.enableCodeLens": false,
     "testExplorer.codeLens": true,
 }
