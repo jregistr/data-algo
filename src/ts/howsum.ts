@@ -11,7 +11,7 @@ Examples:
 7, [2, 4] --> null
 */
 
-function howSum(target: number, numbers: number[]): number[] {
+function howSum(target: number, numbers: number[]): number[] | null {
     // base case, target is 0. An empty array's values sum up to 0
     if (target === 0) return [];
     if (target < 0) return null;
@@ -39,10 +39,10 @@ it("should return 2s", () => {
 time: O(n * m)
 Space: O(m^2)
 */
-function howSumMemoized(target: number, numbers: number[]): number[] {
-    const memo = new Map<number, number[]>();
+function howSumMemoized(target: number, numbers: number[]): number[] | null {
+    const memo = new Map<number, number[] | null>();
 
-    function inner(target: number): number[] {
+    function inner(target: number): number[] | null {
         if (memo.has(target)) return memo.get(target)!;
         if (target === 0) return [];
         if (target < 0) return null;
@@ -65,5 +65,5 @@ function howSumMemoized(target: number, numbers: number[]): number[] {
 
 test("that it returns expected values for small and even large inputs", () => {
     expect(howSumMemoized(7, [5, 3, 4, 7])).toEqual([4, 3])
-    expect(howSumMemoized(300, [60, 2, 50, 7])).toEqual([60, 60, 60, 60, 60])
+    expect(howSumMemoized(300, [60, 2, 50, 7, 250])).toEqual([60, 60, 60, 60, 60])
 })
