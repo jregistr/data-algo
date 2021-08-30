@@ -28,7 +28,6 @@ test("large grid", () => {
   expect(gridTraveler(18, 18)).toBe(2333606220);
 });
 
-
 /*
 Build a table.
 
@@ -58,7 +57,6 @@ function gridTravelerTable(m: number, n: number): number {
 
   return table[m][n];
 }
-
 
 test("that table grid traveler returns expected values", () => {
   expect(gridTravelerTable(1, 1)).toBe(1);

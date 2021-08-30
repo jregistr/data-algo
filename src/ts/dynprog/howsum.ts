@@ -66,5 +66,34 @@ function howSumMemoized(target: number, numbers: number[]): number[] | null {
 
 test("that it returns expected values for small and even large inputs", () => {
   expect(howSumMemoized(7, [5, 3, 4, 7])).toEqual([4, 3]);
-  expect(howSumMemoized(300, [60, 2, 50, 7, 250])).toEqual([60, 60, 60, 60, 60]);
+  expect(howSumMemoized(300, [60, 2, 50, 7, 2])).toEqual([60, 60, 60, 60, 60]);
+});
+
+/*
+How sum tabulation
+[[], null, null, [3], [4], [5], [3,3], [4,3]]
+*/
+
+function howSumTable(target: number, numbers: number[]): number[] | null {
+  const table: number[][] = Array(target + 1).fill(null);
+  // we can always return a sum of zero by taking no elements from the array
+  table[0] = [];
+  for (let i = 0; i <= target; i++) {
+    if (table[i] !== null) {
+      for (const num of numbers) {
+        const upNext = i + num;
+        if (upNext <= target) {
+          table[upNext] = [...table[i], num];
+        }
+      }
+    }
+  }
+
+  return table[target];
+}
+
+test("that the tabulated impl returns expected results", () => {
+  expect(howSumTable(7, [5, 3, 4, 7])).toEqual([4, 3]);
+  expect(howSumTable(300, [60, 250, 50])).toEqual([50, 50, 50, 50, 50, 50]);
+  expect(howSumTable(300, [7, 14])).toBeNull();
 });

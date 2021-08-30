@@ -41,7 +41,6 @@ With a current pointer at 1, add 1 to the next 2 positions, avoiding out of boun
 O(n) time and space
 */
 
-
 function fibTable(n: number): number {
   const table = Array<number>(n + 1).fill(0);
   table[1] = 1;
@@ -58,4 +57,4 @@ test("expected tabulation results", () => {
   expect(fibTable(6)).toBe(8);
   expect(fibTable(7)).toBe(13);
   // expect(fibTable(50)).toBe()
-})
+});

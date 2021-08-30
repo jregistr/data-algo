@@ -99,4 +99,4 @@ test("that canSumTabular returns expected values", () => {
   expect(canSumTable(7, [2, 4])).toBeFalsy();
   expect(canSumTable(8, [2, 3, 5])).toBeTruthy();
   expect(canSumTable(300, [7, 14])).toBeFalsy();
-})
+});
