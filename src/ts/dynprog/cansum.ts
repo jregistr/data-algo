@@ -78,3 +78,25 @@ describe("memoized solution", () => {
     expect(canSum(300, [7, 14])).toBeFalsy();
   });
 });
+
+function canSumTable(target: number, numbers: number[]): boolean {
+  const table = Array(target + 1).fill(false);
+  table[0] = true;
+  for (let i = 0; i <= target; i++) {
+    if (table[i] === true) {
+      for (const num of numbers) {
+        const lookAhead = i + num;
+        if (lookAhead <= target) table[lookAhead] = true;
+      }
+    }
+  }
+
+  return table[target];
+}
+
+test("that canSumTabular returns expected values", () => {
+  expect(canSumTable(7, [5, 3, 4, 7])).toBeTruthy();
+  expect(canSumTable(7, [2, 4])).toBeFalsy();
+  expect(canSumTable(8, [2, 3, 5])).toBeTruthy();
+  expect(canSumTable(300, [7, 14])).toBeFalsy();
+})
