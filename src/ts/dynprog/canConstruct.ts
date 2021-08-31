@@ -75,3 +75,44 @@ test("that we get false for the given inputs", () => {
     ])
   ).toBeFalsy();
 });
+
+/*
+Can construct using tabulation method 
+*/
+
+function canConstructTable(target: string, wordBank: string[]): boolean {
+  const table = Array(target.length + 1).fill(false);
+  table[0] = true;
+  for (let i = 0; i <= target.length; i++) {
+    if (table[i] == true) {
+      for (const word of wordBank) {
+        if (target.substring(i, i + word.length) == word) {
+          table[i + word.length] = true;
+        }
+      }
+    }
+  }
+
+  return table[target.length];
+}
+
+test("that we get true for the given inputs", () => {
+  expect(canConstructTable("abcdef", ["ab", "abc", "cd", "def", "abcd"])).toBeTruthy();
+  expect(
+    canConstructTable("enterapotentpot", ["a", "p", "ent", "enter", "ot", "o", "t"])
+  ).toBeTruthy();
+});
+
+test("that we get false for the given inputs", () => {
+  expect(
+    canConstructTable("skateboard", ["bo", "rd", "ate", "t", "ska", "sk", "boar"])
+  ).toBeFalsy();
+  expect(
+    canConstructTable("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", [
+      "e",
+      "ee",
+      "eeee",
+      "eeeeeeee"
+    ])
+  ).toBeFalsy();
+});

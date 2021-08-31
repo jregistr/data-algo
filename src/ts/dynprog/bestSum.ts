@@ -81,3 +81,39 @@ test("that it returns 50 and 250 as the smallest combination", () => {
   expect(bestSumMemoized(100, [1, 2, 5, 25])).toEqual([25, 25, 25, 25]);
   expect(bestSumMemoized(300, [2, 50, 7, 250])).toEqual([250, 50]);
 });
+
+/*
+Best sum as tabulation.
+When looking to replace a filled lookahead value, keep the smaller array.
+*/
+
+function bestSumTable(target: number, numbers: number[]): number[] | null {
+  const table: number[][] = Array(target + 1).fill(null);
+  table[0] = [];
+  for (let i = 0; i <= target; i++) {
+    const tableCur = table[i];
+    if (tableCur !== null) {
+      for (const num of numbers) {
+        const lookAheadIndex = i + num;
+        if (lookAheadIndex <= target) {
+          // replace if lookahead is null or len(tableCur + 1) < lookAhead
+          if (
+            table[lookAheadIndex] === null ||
+            tableCur.length + 1 < table[lookAheadIndex].length
+          ) {
+            table[lookAheadIndex] = [num, ...tableCur];
+          }
+        }
+      }
+    }
+  }
+  return table[target];
+}
+
+test("that it returns 50 and 250 as the smallest combination", () => {
+  expect(bestSumTable(7, [5, 3, 4, 7])).toEqual([7]);
+  expect(bestSumTable(8, [2, 3, 5])).toEqual([5, 3]);
+  expect(bestSumTable(100, [1, 2, 5, 25])).toEqual([25, 25, 25, 25]);
+  expect(bestSumTable(300, [2, 50, 7, 250])).toEqual([250, 50]);
+  expect(bestSumTable(460, [2, 50, 70, 460, 250])).toEqual([460]);
+});

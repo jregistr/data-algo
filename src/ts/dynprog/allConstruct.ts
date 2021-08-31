@@ -99,3 +99,43 @@ test("that it returns expected values", () => {
     allConstructMemo("aaaaaaaaaaaaaaaaaaaaaaaaaaz", ["a", "aa", "aaa", "aaaa", "aaaaa"])
   ).toEqual([]);
 });
+
+function allConstructTable(target: string, wordBank: string[]): string[][] {
+  const table: string[][][] = Array(target.length + 1)
+    .fill(0)
+    .map(() => []);
+  table[0] = [[]];
+
+  for (let i = 0; i <= target.length; i++) {
+    // if (table[i].length > 0) {
+    for (const word of wordBank) {
+      const lookAheadIndex = i + word.length;
+      if (lookAheadIndex < table.length && target.substring(i, i + word.length) === word) {
+        const nextAhead = table[i].map((sub) => [...sub, word]);
+        table[lookAheadIndex].push(...nextAhead);
+      }
+    }
+    // }
+  }
+  return table[target.length];
+}
+
+test("that it returns an expected 2D array for abcdef", () => {
+  const expected = [
+    ["abc", "def"],
+    ["ab", "c", "def"],
+    ["abcd", "ef"],
+    ["ab", "cd", "ef"]
+  ];
+
+  expect(allConstructTable("abcdef", ["ab", "abc", "cd", "def", "abcd", "ef", "c"])).toEqual(
+    expected
+  );
+});
+
+test("that it returns expected values", () => {
+  expect(allConstructTable("purple", ["purp", "p", "ur", "le", "purpl"])).toEqual([
+    ["purp", "le"],
+    ["p", "ur", "p", "le"]
+  ]);
+});

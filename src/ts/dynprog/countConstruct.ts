@@ -71,3 +71,37 @@ test("that we get expected counts for the specified inputs", () => {
     ])
   ).toBe(405448622);
 });
+
+function countConstructTable(target: string, wordBank: string[]): number {
+  const table = Array(target.length + 1).fill(0);
+  table[0] = 1;
+
+  for (let i = 0; i <= target.length; i++) {
+    if (table[i] > 0) {
+      for (const word of wordBank) {
+        const lookAheadIndex = i + word.length;
+        if (lookAheadIndex < table.length && target.substring(i, i + word.length) === word) {
+          table[lookAheadIndex] += table[i];
+        }
+      }
+    }
+  }
+  return table[target.length];
+}
+
+test("that we get expected counts for the specified inputs", () => {
+  expect(countConstructTable("purple", ["purp", "p", "ur", "le", "purpl"])).toBe(2);
+  expect(countConstructTable("enterapotentpot", ["a", "p", "ent", "enter", "ot", "o", "t"])).toBe(
+    4
+  );
+  expect(countConstructTable("abcdef", ["ab", "abc", "cd", "def", "abcd"])).toBe(1);
+  expect(
+    countConstructTable("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", [
+      "e",
+      "eeee",
+      "ef",
+      "eeee",
+      "eeeeeeee"
+    ])
+  ).toBe(405448622);
+});
