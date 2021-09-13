@@ -2,12 +2,17 @@ package algos;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class CommonElementsTest {
 
     @Test
     void testExpectedValues() {
+        char[] bla = new char[10];
+        System.out.println((int)bla[0]);
+        System.out.println(Arrays.toString(bla));
         assertArrayEquals(CommonElements.commonElements(
                 new int[]{1, 3, 4, 6, 7, 9},
                 new int[]{1, 2, 4, 5, 9, 10}
