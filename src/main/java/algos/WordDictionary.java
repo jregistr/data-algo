@@ -24,24 +24,6 @@ public class WordDictionary {
     public static class TreeNode {
         boolean end = false;
         TreeNode[] children = new TreeNode[26];
-
-        @Override
-        public String toString() {
-            StringBuilder childrenStr = new StringBuilder();
-            boolean added1 = false;
-            for(int i =0; i < 26; i ++) {
-                if(children[i] == null) continue;
-                int toCharInt = i + 'a';
-                char toChar = (char) toCharInt;
-                if(added1) childrenStr.append(",");
-                childrenStr.append(toChar);
-                added1 = true;
-            }
-            return "TreeNode {" +
-                    "end=" + end +
-                    ", children=" + childrenStr +
-                    '}';
-        }
     }
 
     public void addWord(String toInsert) {
@@ -72,7 +54,7 @@ public class WordDictionary {
                         .filter(Objects::nonNull)
                         .collect(Collectors.toList());
                 for (TreeNode child : children) {
-                    if(search(toSearch, startI + 1, child)) return true;
+                    if(search(toSearch, i + 1, child)) return true;
                 }
                 return false;
             } else {

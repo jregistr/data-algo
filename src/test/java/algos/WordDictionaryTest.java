@@ -3,15 +3,8 @@ package algos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static algos.WordDictionary.TreeNode;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class WordDictionaryTest {
 
@@ -62,6 +55,23 @@ public class WordDictionaryTest {
         assertFalse(dictionary.search("pad"));
         assertTrue(dictionary.search("bad"));
         assertTrue(dictionary.search(".ad"));
-        assertTrue(dictionary.search("b."));
+        assertTrue(dictionary.search("b.d"));
+    }
+
+    @Test
+    void testCorner2() {
+        /*
+        ["WordDictionary","addWord","addWord","search","search","search","search","search","search"]
+        [[],               ["a"],    ["a"],    ["."],   ["a"],   ["aa"],  ["a"],   [".a"],  ["a."]]
+        [null,              null,    null,      true,   true,    false,   true,    false,   false]
+        */
+        dictionary.addWord("a");
+        dictionary.addWord("a");
+        assertTrue(dictionary.search("."));
+        assertTrue(dictionary.search("a"));
+        assertFalse(dictionary.search("aa"));
+        assertTrue(dictionary.search("a"));
+        assertFalse(dictionary.search(".a"));
+        assertFalse(dictionary.search("a."));
     }
 }
