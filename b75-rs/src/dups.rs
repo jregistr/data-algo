@@ -7,3 +7,18 @@ impl ContainsDuplicates {
         !nums.into_iter().all(|num| hash.insert(num))
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test1() {
+        assert_eq!(true, ContainsDuplicates::contains_duplicate(vec![1,2,3,1]))
+    }
+
+    #[test]
+    fn test2() {
+        assert_eq!(false, ContainsDuplicates::contains_duplicate(vec![1,2,3,4]))
+    }
+}
