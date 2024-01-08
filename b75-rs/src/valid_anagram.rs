@@ -27,3 +27,13 @@ impl ValidAnagram {
 
 
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test1() {
+        assert_eq!(true, ValidAnagram::is_anagram("anagram".into(), "nagaram".into()));
+    }
+}
